@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+
+namespace PreciosApp
+{
+    // Clase que gestiona la lista de precios
+    class ListaPrecios
+    {
+        public List<int> Precios { get; set; }
+
+        public ListaPrecios()
+        {
+            Precios = new List<int> { 50, 75, 46, 22, 80, 65, 8 };
+        }
+
+        public int ObtenerPrecioMayor()
+        {
+            int mayor = Precios[0];
+            foreach (int precio in Precios)
+            {
+                if (precio > mayor)
+                {
+                    mayor = precio;
+                }
+            }
+            return mayor;
+        }
+
+        public int ObtenerPrecioMenor()
+        {
+            int menor = Precios[0];
+            foreach (int precio in Precios)
+            {
+                if (precio < menor)
+                {
+                    menor = precio;
+                }
+            }
+            return menor;
+        }
+    }
+
+    // Clase principal
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ListaPrecios precios = new ListaPrecios();
+
+            int mayor = precios.ObtenerPrecioMayor();
+            int menor = precios.ObtenerPrecioMenor();
+
+            Console.WriteLine($"El precio mayor es: {mayor}");
+            Console.WriteLine($"El precio menor es: {menor}");
+
+            Console.WriteLine("\nPresiona una tecla para salir...");
+            Console.ReadKey();
+        }
+    }
+}
