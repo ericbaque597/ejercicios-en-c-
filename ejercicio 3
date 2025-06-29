@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+
+namespace NumerosInversos
+{
+    // Clase que representa una colección de números
+    class Numeros
+    {
+        public List<int> ListaNumeros { get; set; }
+
+        public Numeros()
+        {
+            ListaNumeros = new List<int>();
+            for (int i = 1; i <= 10; i++)
+            {
+                ListaNumeros.Add(i);
+            }
+        }
+
+        public void MostrarInverso()
+        {
+            Console.WriteLine("Números del 10 al 1, separados por comas:");
+
+            for (int i = ListaNumeros.Count - 1; i >= 0; i--)
+            {
+                Console.Write(ListaNumeros[i]);
+                if (i != 0)
+                {
+                    Console.Write(", ");
+                }
+            }
+
+            Console.WriteLine(); // Salto de línea final
+        }
+    }
+
+    // Clase principal
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Numeros misNumeros = new Numeros();
+            misNumeros.MostrarInverso();
+
+            Console.WriteLine("\nPresiona una tecla para salir...");
+            Console.ReadKey();
+        }
+    }
+}
