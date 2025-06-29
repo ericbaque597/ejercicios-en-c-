@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+
+namespace CursoAsignaturas
+{
+    // Clase que representa una Asignatura con su nota
+    class Asignatura
+    {
+        public string Nombre { get; set; }
+        public double Nota { get; set; }
+
+        public Asignatura(string nombre)
+        {
+            Nombre = nombre;
+            Nota = 0;
+        }
+    }
+
+    // Clase que representa un Curso
+    class Curso
+    {
+        public List<Asignatura> Asignaturas { get; set; }
+
+        public Curso()
+        {
+            Asignaturas = new List<Asignatura>
+            {
+                new Asignatura("Matemáticas"),
+                new Asignatura("Física"),
+                new Asignatura("Química"),
+                new Asignatura("Historia"),
+                new Asignatura("Lengua")
+            };
+        }
+
+        public void PedirNotas()
+        {
+            Console.WriteLine("Ingrese las notas para cada asignatura:");
+            foreach (var asignatura in Asignaturas)
+            {
+                Console.Write($"Nota para {asignatura.Nombre}: ");
+                bool valido = false;
+
+                while (!valido)
+                {
+                    string input = Console.ReadLine();
+                    if (double.TryParse(input, out double nota))
+                    {
+                        asignatura.Nota = nota;
+                        valido = true;
+                    }
+                    else
+                    {
+                        Console.Write("Entrada inválida. Ingrese un número válido: ");
+                    }
+                }
+            }
+        }
+
+        public void MostrarNotas()
+        {
+            Console.WriteLine("\nResumen de notas:");
+            foreach (var asignatura in Asignaturas)
+            {
+                Console.WriteLine($"En {asignatura.Nombre} has sacado {asignatura.Nota}");
+            }
+        }
+    }
+
+    // Clase principal
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Curso curso = new Curso();
+            curso.PedirNotas();
+            curso.MostrarNotas();
+
+            Console.WriteLine("\nPresiona una tecla para salir...");
+            Console.ReadKey();
+        }
+    }
+}
